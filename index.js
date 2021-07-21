@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import { mentorRouter } from "./routes/mentor.js";
 import { studentRouter } from "./routes/student.js";
 
@@ -14,6 +15,7 @@ con.on("open", () => {
   console.log("Mongodb is connected!");
 });
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/", mentorRouter);
