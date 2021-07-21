@@ -33,4 +33,23 @@ studentRouter.post("/createStudent", async (request, response) => {
   }
 });
 
+//update mentor
+studentRouter.patch("/updateStudent", async (request, response) => {
+  const { studentId, newMentorId } = request.body;
+  if (!student || !mentor) {
+    return response.status(422).json({ error: "Field is empty!" });
+  }
+
+  try {
+    await Student.updateOne(
+      { _id: studentId },
+      { $set: { mentor: { mentorId: mentorId, mentorName: mName.name } } }
+    );
+
+    response.status(200).json({ message: "Mentor updated!" });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 export { studentRouter };
