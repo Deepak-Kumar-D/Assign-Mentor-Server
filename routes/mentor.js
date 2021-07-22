@@ -55,7 +55,7 @@ mentorRouter.post("/createMentor", async (request, response) => {
   }
 });
 
-//Add students to Mentor
+//Assign students to Mentor
 mentorRouter.patch("/updateMentor", async (request, response) => {
   const { mentorId, studentId } = request.body;
 
@@ -74,7 +74,12 @@ mentorRouter.patch("/updateMentor", async (request, response) => {
 
     await Student.updateOne(
       { _id: studentId },
-      { $set: { mentor: { mentorId: mentorId, mentorName: mName.name } } }
+      {
+        $set: {
+          mentor: { mentorId: mentorId, mentorName: mName.name },
+          status: "true",
+        },
+      }
     );
 
     response
