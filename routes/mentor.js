@@ -59,28 +59,37 @@ mentorRouter.post("/createMentor", async (request, response) => {
 mentorRouter.patch("/updateMentor", async (request, response) => {
   const { mentorId, studentId } = request.body;
 
+  // console.log(mentorId);
+  // console.log(studentId);
+
   if (!mentorId || !studentId) {
     return response.status(422).json({ error: "Field is empty!" });
   }
 
   try {
-    const sName = await Student.findOne({ _id: studentId });
-    const mName = await Mentor.findOne({ _id: mentorId });
+    studentId.forEach(async (ele) => {
+      const sName = await Student.findOne({ _id: ele });
+      const mName = await Mentor.findOne({ _id: mentorId });
 
-    await Mentor.updateOne(
-      { _id: mentorId },
-      { $push: { students: { studentId: studentId, studentName: sName.name } } }
-    );
+      await Mentor.updateOne(
+        { _id: mentorId },
+        {
+          $push: {
+            students: { studentId: ele, studentName: sName.name },
+          },
+        }
+      );
 
-    await Student.updateOne(
-      { _id: studentId },
-      {
-        $set: {
-          mentor: { mentorId: mentorId, mentorName: mName.name },
-          status: "true",
-        },
-      }
-    );
+      await Student.updateOne(
+        { _id: ele },
+        {
+          $set: {
+            mentor: { mentorId: mentorId, mentorName: mName.name },
+            status: "true",
+          },
+        }
+      );
+    });
 
     response
       .status(201)
