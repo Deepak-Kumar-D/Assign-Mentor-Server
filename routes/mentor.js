@@ -59,9 +59,6 @@ mentorRouter.post("/createMentor", async (request, response) => {
 mentorRouter.patch("/updateMentor", async (request, response) => {
   const { mentorId, studentId } = request.body;
 
-  // console.log(mentorId);
-  // console.log(studentId);
-
   if (!mentorId || !studentId) {
     return response.status(422).json({ error: "Field is empty!" });
   }
