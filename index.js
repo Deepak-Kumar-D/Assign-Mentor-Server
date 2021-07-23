@@ -7,7 +7,7 @@ import { studentRouter } from "./routes/student.js";
 const app = express();
 const PORT = process.env.PORT || 5002;
 
-const url = "mongodb://localhost/assignMentor";
+const url = process.env.MONGODB_URL || "mongodb://localhost/assignMentor";
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const con = mongoose.connection;
