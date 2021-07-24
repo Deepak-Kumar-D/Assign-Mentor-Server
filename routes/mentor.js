@@ -49,7 +49,7 @@ mentorRouter.post("/createMentor", async (request, response) => {
     const mentor = new Mentor({ name, email });
     await mentor.save();
 
-    response.status(201).json({ message: "Mentor added successfully!" });
+    response.status(200).json({ message: "Mentor added successfully!" });
   } catch (err) {
     response.send(err);
   }

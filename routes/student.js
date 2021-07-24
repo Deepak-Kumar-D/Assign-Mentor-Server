@@ -29,7 +29,7 @@ studentRouter.post("/createStudent", async (request, response) => {
     const student = new Student({ name, email });
     await student.save();
 
-    response.status(201).json({ message: "Student created successfully!" });
+    response.status(200).json({ message: "Student created successfully!" });
   } catch (err) {
     response.send(err);
   }
