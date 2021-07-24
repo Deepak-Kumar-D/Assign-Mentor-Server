@@ -89,7 +89,7 @@ mentorRouter.patch("/updateMentor", async (request, response) => {
     });
 
     response
-      .status(201)
+      .status(200)
       .json({ message: "Student added to Mentor successfully!" });
   } catch (err) {
     response.send(err);

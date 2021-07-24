@@ -35,7 +35,7 @@ studentRouter.post("/createStudent", async (request, response) => {
   }
 });
 
-//update mentor
+//Update mentor
 studentRouter.patch("/updateStudent", async (request, response) => {
   const { studentId, newMentorId } = request.body;
 
@@ -70,7 +70,7 @@ studentRouter.patch("/updateStudent", async (request, response) => {
 
     response.status(200).json({ message: "Mentor updated!" });
   } catch (err) {
-    console.log(err);
+    response.send(err);
   }
 });
 
