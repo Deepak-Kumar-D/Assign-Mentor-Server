@@ -18,6 +18,7 @@ studentRouter.post("/createStudent", async (request, response) => {
   if ((!name, !email)) {
     return response.status(422).json({ error: "Field is empty!" });
   }
+
   try {
     const isExist = await Student.findOne({ email: email });
 
@@ -30,7 +31,7 @@ studentRouter.post("/createStudent", async (request, response) => {
 
     response.status(201).json({ message: "Student created successfully!" });
   } catch (err) {
-    console.log(err);
+    response.send(err);
   }
 });
 
