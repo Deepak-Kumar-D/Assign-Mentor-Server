@@ -8,7 +8,7 @@ const studentRouter = express.Router();
 studentRouter.get("/getStudent", async (request, response) => {
   const student = await Student.find();
 
-  response.send(student);
+  response.status(200).json(student);
 });
 
 //Create Student
@@ -31,7 +31,7 @@ studentRouter.post("/createStudent", async (request, response) => {
 
     response.status(200).json({ message: "Student created successfully!" });
   } catch (err) {
-    response.send(err);
+    response.json(err);
   }
 });
 
@@ -70,7 +70,7 @@ studentRouter.patch("/updateStudent", async (request, response) => {
 
     response.status(200).json({ message: "Mentor updated!" });
   } catch (err) {
-    response.send(err);
+    response.json(err);
   }
 });
 

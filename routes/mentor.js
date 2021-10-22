@@ -8,7 +8,7 @@ const mentorRouter = express.Router();
 mentorRouter.get("/getMentor", async (request, response) => {
   const mentor = await Mentor.find();
 
-  response.send(mentor);
+  response.status(200).json(mentor);
 });
 
 //Show students of a mentor
@@ -51,7 +51,7 @@ mentorRouter.post("/createMentor", async (request, response) => {
 
     response.status(200).json({ message: "Mentor added successfully!" });
   } catch (err) {
-    response.send(err);
+    response.json(err);
   }
 });
 
@@ -92,7 +92,7 @@ mentorRouter.patch("/updateMentor", async (request, response) => {
       .status(200)
       .json({ message: "Student added to Mentor successfully!" });
   } catch (err) {
-    response.send(err);
+    response.json(err);
   }
 });
 
